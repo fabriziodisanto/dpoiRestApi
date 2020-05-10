@@ -22,7 +22,6 @@ public abstract class AbstractSchema implements Schemable, Schema {
         this.keyValues = keyValues;
         keyValues.add(new SchemaKeyValues("@type").addValue(name));
         keyValues.add(new SchemaKeyValues("@context").addValue("http://schema.org"));
-
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.scrapper.schemaScrapper.persistence.model;
 
-
 import com.scrapper.schemaScrapper.PropertiesScrapper;
 
 import java.util.List;

@@ -2,11 +2,8 @@ package com.scrapper.schemaScrapper.service;
 
 import com.scrapper.schemaScrapper.FravegaScrapper;
 import com.scrapper.schemaScrapper.LaNacionScrapper;
-import com.scrapper.schemaScrapper.persistence.model.AbstractSchema;
-import com.scrapper.schemaScrapper.persistence.model.Schema;
-import com.scrapper.schemaScrapper.persistence.model.SchemaNewsArticle;
+import com.scrapper.schemaScrapper.persistence.model.*;
 import com.scrapper.schemaScrapper.persistence.repository.SchemaRepository;
-import com.scrapper.schemaScrapper.persistence.model.ProductSchema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +23,8 @@ public class SchemaServiceImpl implements SchemaService {
     @Override
     public List<String> getAllContainers(String container) {
         ArrayList<String> result = new ArrayList();
-        schemaRepository.findAll().forEach(schema -> {
-            if (schema.getType().equals(container)) result.add(schema.getId());
+        schemaRepository.findAllByName(container).forEach(schema -> {
+            result.add(schema.getId());
         });
         return result;
     }
@@ -49,13 +46,13 @@ public class SchemaServiceImpl implements SchemaService {
             schemaRepository.insert(schema);
             return schema;
         }
-//        else if(url.contains("www.lanacion.com")){
-//            SchemaNewsArticle schema = LaNacionScrapper.scrapp(url);
-//            schemaRepository.insert(schema);
-//            return schema;
-//        }
-        else{
-            return null;
+        else if(url.contains("www.lanacion.com")){
+            NewsArticleSchema schema = LaNacionScrapper.scrapp(url);
+            if (schema != null) {
+                schemaRepository.insert(schema);
+                return schema;
+            }
         }
+        return null;
     }
 }

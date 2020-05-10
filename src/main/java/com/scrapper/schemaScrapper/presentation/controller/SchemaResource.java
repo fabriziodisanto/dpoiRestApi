@@ -19,7 +19,24 @@ public class SchemaResource {
 
     @GetMapping("/{container}")
     public ResponseEntity getAllContainers(@PathVariable String container) {
-        return new ResponseEntity<>(schemaService.getAllContainers(container), HttpStatus.OK);
+        StringBuilder result = new StringBuilder();
+        result.append("[")
+                .append("\"@id\": \"http://localhost:8080/api/\" + container + \"/\",")
+                .append("\"@type\": [")
+                .append("\"http://www.w3.org/ns/ldp#BasicContainer\"")
+                .append("\"http://purl.org/dc/terms/title\": [")
+                .append("{\n").append("\"@value\": \"Container of \"").append(container).append(" resources\"")
+                .append("\n}")
+                .append("],")
+                .append("\"http://www.w3.org/ns/ldp#contains\": [");
+        schemaService.getAllContainers(container).forEach(schema -> {
+            result.append("{")
+                    .append("\"@id\": ").append("http://localhost:8080/api/").append(container).append("/").append(schema)
+                    .append("},");
+        });
+        result.append("]}]");
+
+        return new ResponseEntity<>(result.toString(), HttpStatus.OK);
     }
 
     @GetMapping("/{container}/{resource}")
@@ -39,6 +56,10 @@ public class SchemaResource {
         urls.add("https://www.fravega.com/p/secarropas-centrifugo-koh-i-noor-a-665-2-6-5-kg-280026");
         for (String url : urls) {
             schemaService.scrappThisUrl(url);
+        }
+        String url = "http://www.lanacion.com.ar/";
+        for (int i = 2351900; i <= 2351905; i++) {
+            schemaService.scrappThisUrl(url + i);
         }
         return new ResponseEntity<>("Database loaded with data", HttpStatus.OK);
     }

@@ -2,6 +2,8 @@ package com.scrapper.schemaScrapper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.scrapper.schemaScrapper.persistence.model.AbstractSchema;
+import com.scrapper.schemaScrapper.persistence.model.NewsArticleSchema;
 import com.scrapper.schemaScrapper.persistence.model.SchemaNewsArticle;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
@@ -14,7 +16,7 @@ import java.util.List;
 
 public class LaNacionScrapper {
 
-    public static SchemaNewsArticle scrapp(String url){
+    public static NewsArticleSchema scrapp(String url){
         SchemaNewsArticle schemaNewsArticle = null;
         try {
             Document doc = Jsoup.connect(url).timeout(10000).userAgent("Mozilla").get();
@@ -26,15 +28,15 @@ public class LaNacionScrapper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (schemaNewsArticle != null) schemaNewsArticle.setContextAndType("http://schema.org", "NewsArticle");
-        return schemaNewsArticle;
+        if (schemaNewsArticle != null) return schemaNewsArticle.toNewsArticleSchema();
+        return null;
     }
 
-    public static List<SchemaNewsArticle> scrappPages(int start, int end){
-        ArrayList<SchemaNewsArticle> result = new ArrayList<>();
+    public static List<NewsArticleSchema> scrappPages(int start, int end){
+        ArrayList<NewsArticleSchema> result = new ArrayList<>();
         String url = "http://www.lanacion.com.ar/";
         for (int i = start; i <= end; i++) {
-            SchemaNewsArticle schemaNewsArticle = scrapp(url + i);
+            NewsArticleSchema schemaNewsArticle = scrapp(url + i);
             if (schemaNewsArticle != null) result.add(schemaNewsArticle);
         }
         return result;
