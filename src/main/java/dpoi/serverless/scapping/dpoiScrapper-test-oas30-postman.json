@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "dpoiScrapper",
+    "version": "2020-05-10T06:51:13Z"
+  },
+  "servers": [
+    {
+      "url": "https://fwogmu3h1j.execute-api.us-east-1.amazonaws.com/{basePath}",
+      "variables": {
+        "basePath": {
+          "default": "/test"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/scraps": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "returns all scraps",
+            "content": {
+              "application/json": {
+                "schema": {
+                    "example":{
+                      "count": 3,
+                      "pageLimit": 50,
+                      "scraps": [
+                        {
+                          "content": "Product : { \n\tcategory : [\n\t \tLavado\n\t \tSecarropas\n\t]\n\t@type : Product,\n\t@context : http://schema.org,\n\tThing : { \n\t\tdescription : Funciones El A-665/2 centrifuga todo tipo de ropa incluyendo: algodón, lana, toalla, jean, lycra, sintética y polyester. El proceso no daña la ropa. Diseño El Koh-I-Noor A-665/2 es un secarropas de diseño cilíndrico clásico en color acero inoxidable. Además, tiene un sistema de traba de máxima seguridad TBS que evita que la tapa se abra cuando está en proceso el centrifugado. La tapa abre sola cuando deja de girar. Por otra parte, su tambor de secado es de acero inoxidable, lo que brinda mayor durabilidad y facilita la limpieza del equipo. Al mismo tiempo, incluye recipiente recolector de agua. Capacidad y potencia Su capacidad es de 6,5 kilos y su potencia de centrifugado es de 2800 RPM (revoluciones por minuto). El tiempo de secado es de menos de 2 minutos para telas sintéticas y de 3 a 5 minutos para el resto de los tejidos. Tecnología El secarropas Koh-I-Noor realiza el secado de ropa por su capacidad centrífuga gracias a un motor de aceleración progresiva que además consigue acomodar la ropa en el proceso.,\n\t\tname : Secarropas Centrifugo KOH-I-NOOR A-665/2 6,5 Kg,\n\t\turl : https://www.fravega.com/p/secarropas-centrifugo-koh-i-noor-a-665-2-6-5-kg-280026,\n\t\t@type : Thing,\n\t\t@context : http://schema.org,\n\t}}",
+                          "date": "May 10, 2020, 6:48:53 AM",
+                          "uuid": "170471"
+                        },
+                        {
+                          "content": "NewsArticle : { \n\theadline : Coronavirus: la curva de decesos por Covid-19 se acelera en Suecia,\n\turl : https://www.lanacion.com.ar/el-mundo/la-curva-de-decesos-por-covid-19-se-acelera-en-suecia-nid2351900,\n\tthumbnailUrl : https://bucket1.glanacion.com/anexos/fotos/81/3230481w960.jpg,\n\tmainEntityOfPage : https://www.lanacion.com.ar/el-mundo,\n\tarticleSection : El-Mundo,\n\tauthor : Redacción LA NACION,\n\tcreator : Redacción LA NACION,\n\t@type : NewsArticle,\n\t@context : http://schema.org,\n}",
+                          "date": "May 10, 2020, 6:09:52 AM",
+                          "uuid": "f70e0d"
+                        },
+                        {
+                          "content": "Product : { \n\tcategory : [\n\t \tCelulares\n\t \tCelulares Liberados\n\t]\n\t@type : Product,\n\t@context : http://schema.org,\n\tThing : { \n\t\tdescription : Guardá lo que quieras Posee una memoria interna (ROM) de 32 GB* mientras que la externa se puede expandir mediante una tarjeta micro SD hasta 512 GB. Vas a poder almacenar videos, fotos y música sin problemas. *Hay que tener en cuenta que la memoria interna disponible para el usuario es siempre menor debido al sistema operativo, interfaces y aplicaciones preinstaladas. Experimentá su diseño El Galaxy A10S presenta un diseño ergonómico y elegante. Con la pantalla de 6.2\" vas a poder sumergirte en tus juegos y videos favoritos.  Capturá tus momentos Conseguí imágenes claras y brillantes con su cámara principal Dual de 13 megapíxeles y 2 MP con flash integrado. Y grabá los mejores videos en resolución 1080p a 30 fotogramas por segundo (fps). Gracias a su cámara frontal de 8 megapíxeles y el modo belleza, siempre saldrás perfecto. No te quedes sin batería Su batería de 4000 mAh te ofrece está lista para durar todo el día. Disfrutá de un gran rendimiento Su procesador y la memoria RAM de 2 GB te permitirán ejecutar aplicaciones y realizar múltiples tareas al mismo tiempo. Además, su sistema operativo Android es eficiente y fácil de usar.,\n\t\tname : Celular Libre Samsung Galaxy A10S Azul,\n\t\turl : https://www.fravega.com/p/celular-libre-samsung-galaxy-a10s-azul-781862,\n\t\t@type : Thing,\n\t\t@context : http://schema.org,\n\t}}",
+                          "date": "May 10, 2020, 6:08:52 AM",
+                          "uuid": "8bdcb3"
+                        }
+                      ]
+                    }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "scrapps url",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                      "uuid": "8bdcb3"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,6 @@
-Pasos para correr:
+# serverless-scrapping
+DPOI Serverless Scrapping
 
-Crear una base en mongoDB:
-name: scrapping
-host: 127.0.0.1:27017
+Base repository for DPOI Serverless scrapping practice.
 
-Pegarle un post a /api/startDatabase para popular la tabla
+[DPOI Site](https://facultaddeingenieria.github.io/dpoi)
